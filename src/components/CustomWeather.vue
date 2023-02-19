@@ -8,8 +8,8 @@
            :src="'https://openweathermap.org/img/wn/'+ request.weather[0].icon +'@2x.png'"
            alt="">
       <div class="data">
-        <p class="main">{{ Math.round(request.main.temp) }} °C</p>
-        <p class="mainsub">{{ request.name }}, {{ request.sys.country }}</p>
+        <p>{{ Math.round(request.main.temp) }} °C</p>
+        <p>{{ request.name }}, {{ request.sys.country }}</p>
       </div>
 
     </div>
@@ -19,7 +19,7 @@
       <div class="humidity">
         <p class="humiditytext">Humidity<br>{{ request.main.feels_like }} %</p>
         <svg xml:space="preserve" viewBox="0 0 30 30" height="30px" width="30px" y="0px" x="0px"
-             xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" id="Layer_1" version="1.1"
+             xmlns="http://www.w3.org/2000/svg" id="Layer_1"
              class="humiditysvg">  <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
           AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABiVBMVEUAAAAAAP9NerV/f39O
           e7ZQfLZVf6pRfbfL5fdRfbZIbbZmmcxols5nl85OebSPsteLrdVSfLZxl89ok9FqlM5ahsBdicNa
@@ -46,8 +46,8 @@
 
       <div class="air">
         <p class="airtext">Wind<br>{{ request.wind.speed }} m/s</p>
-        <svg class="airsvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30"
+        <svg  id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30"
              xml:space="preserve">  <image id="image0" width="30" height="30" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
             AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABaFBMVEUAAAAA//8ilfIhlfMg
             lvIglfMglvIeku8cjf8glvMhlfIflvMhlfIhlvIglvMhl/MglvIglfIglPEfmfIhlfIglvQfn/8g
@@ -76,8 +76,8 @@
     <div class="lower">
 
       <div class="aqi">
-        <svg class="aqisvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
+        <svg  id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
              xml:space="preserve">  <image id="image0" width="20" height="20" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
           AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABBVBMVEUAAABL4f9O5v9P5f9Q
           5f9R5/8AZsxB0vYAd9EAeNQAd9MeoOM1w/EYmuIZm+IXnOIAAP8AccYmrOgYmuAWneEA//8AdtQZ
@@ -98,8 +98,8 @@
       </div>
 
       <div class="realfeel">
-        <svg class="rfsvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
+        <svg  id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
              xml:space="preserve">  <image id="image0" width="20" height="20" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
           AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABuVBMVEUAAAAAAAAECQkIDg4E
           BAQAAAAAAAAFBQUHDAwIDg4MFBUNFRUKCgoPGhxGenw/b3FDdXcmRUYJDAwJDw9Pi40LFBQNFhYM
@@ -125,8 +125,8 @@
       </div>
 
       <div class="pressure">
-        <svg class="pressuresvg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
+        <svg  id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+              x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
              xml:space="preserve">  <image id="image0" width="20" height="20" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
           AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABNVBMVEUAAAAAr8EArMAAqsAA
           rMEBrMEBrMAAq8AArb8AqsIBrMEgtMa53+S53+QetMYArMEArMEAqrsArMA9scFegp4Cqr8Ao8gA
@@ -145,7 +145,7 @@
           OjAwJuhzAAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xOFQwNToxNjowOCswMDowMHH9
           Ut8AAAAASUVORK5CYII="></image>
         </svg>
-        <div class="pressuretext">Pressure<br>{{ request.main.pressure }} mbar</div>
+        <div>Pressure<br>{{ request.main.pressure }} mbar</div>
       </div>
 
       <div class="card3">
@@ -154,8 +154,6 @@
 
     </div>
   </div>
-
-  <p>ffe</p>
 
   <AboutView v-if="isOpenSettingsDialog"></AboutView>
 
@@ -200,7 +198,6 @@ export default defineComponent({
   },
 
   methods: {
-
     isOpenSettings(event: boolean) {
       this.$store.state.isOpenDialog = event;
     },

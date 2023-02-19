@@ -34,6 +34,7 @@
   </div>
 </template>
 <script lang="ts">
+
 import {defineComponent} from 'vue'
 import {Store, useStore} from "vuex";
 import {ForecastWeather, key} from "@/store";

@@ -49,6 +49,7 @@ export default defineComponent({
 
   created() {
     this.isDialog = this.$store.state.isOpenDialog;
+    console.log()
   },
 
   data(): Setting {

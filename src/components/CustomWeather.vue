@@ -155,6 +155,8 @@
     </div>
   </div>
 
+  <p>ffe</p>
+
   <AboutView v-if="isOpenSettingsDialog"></AboutView>
 
 </template>

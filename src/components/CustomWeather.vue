@@ -4,20 +4,22 @@
 
     <div class="card">
 
+      <v-icon icon="mdi-menu-left" @click="slideForecasts('previous')"></v-icon>
       <img class="mini-block__icon"
-           :src="'https://openweathermap.org/img/wn/'+ request.weather[0].icon +'@2x.png'"
+           :src="'https://openweathermap.org/img/wn/'+ request.currentWeather.weather[0].icon +'@2x.png'"
            alt="">
       <div class="data">
-        <p>{{ Math.round(request.main.temp) }} °C</p>
-        <p>{{ request.name }}, {{ request.sys.country }}</p>
+        <p>{{ Math.round(request.currentWeather.main.temp) }} °C</p>
+        <p>{{ request.currentWeather.name }}, {{ request.currentWeather.sys.country }}</p>
       </div>
+      <v-icon icon="mdi-menu-right" @click="slideForecasts('next')"></v-icon>
 
     </div>
 
     <div class="upper">
 
       <div class="humidity">
-        <p class="humiditytext">Humidity<br>{{ request.main.feels_like }} %</p>
+        <p class="humiditytext">Humidity<br>{{ request.currentWeather.main.feels_like }} %</p>
         <svg xml:space="preserve" viewBox="0 0 30 30" height="30px" width="30px" y="0px" x="0px"
              xmlns="http://www.w3.org/2000/svg" id="Layer_1"
              class="humiditysvg">  <image href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
@@ -45,9 +47,9 @@
       </div>
 
       <div class="air">
-        <p class="airtext">Wind<br>{{ request.wind.speed }} m/s</p>
-        <svg  id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-              x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30"
+        <p class="airtext">Wind<br>{{ request.currentWeather.wind.speed }} m/s</p>
+        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+             x="0px" y="0px" width="30px" height="30px" viewBox="0 0 30 30"
              xml:space="preserve">  <image id="image0" width="30" height="30" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
             AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABaFBMVEUAAAAA//8ilfIhlfMg
             lvIglfMglvIeku8cjf8glvMhlfIflvMhlfIhlvIglvMhl/MglvIglfIglPEfmfIhlfIglvQfn/8g
@@ -76,8 +78,8 @@
     <div class="lower">
 
       <div class="aqi">
-        <svg  id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-              x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
+        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+             x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
              xml:space="preserve">  <image id="image0" width="20" height="20" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
           AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABBVBMVEUAAABL4f9O5v9P5f9Q
           5f9R5/8AZsxB0vYAd9EAeNQAd9MeoOM1w/EYmuIZm+IXnOIAAP8AccYmrOgYmuAWneEA//8AdtQZ
@@ -94,12 +96,12 @@
           NTowOToyNSswMDowMDWfkfAAAAAodEVYdGRhdGU6dGltZXN0YW1wADIwMjMtMDItMThUMDU6MDk6
           MjUrMDA6MDBiirAvAAAAAElFTkSuQmCC"></image>
         </svg>
-        <div class="aqitext">Visibility<br>{{ request.visibility }}m</div>
+        <div class="aqitext">Visibility<br>{{ request.currentWeather.visibility }}m</div>
       </div>
 
       <div class="realfeel">
-        <svg  id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-              x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
+        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+             x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
              xml:space="preserve">  <image id="image0" width="20" height="20" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
           AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABuVBMVEUAAAAAAAAECQkIDg4E
           BAQAAAAAAAAFBQUHDAwIDg4MFBUNFRUKCgoPGhxGenw/b3FDdXcmRUYJDAwJDw9Pi40LFBQNFhYM
@@ -121,12 +123,12 @@
           LTAyLTE4VDA1OjE1OjI2KzAwOjAw38W0IwAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0x
           OFQwNToxNToyNiswMDowMIjQlfwAAAAASUVORK5CYII="></image>
         </svg>
-        <div class="realfeeltext">Real Feel<br>{{ request.main.feels_like }} °C</div>
+        <div class="realfeeltext">Real Feel<br>{{ request.currentWeather.main.feels_like }} °C</div>
       </div>
 
       <div class="pressure">
-        <svg  id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-              x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
+        <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+             x="0px" y="0px" width="20px" height="20px" viewBox="0 0 20 20"
              xml:space="preserve">  <image id="image0" width="20" height="20" x="0" y="0" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAABGdBTUEAALGPC/xhBQAAACBjSFJN
           AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABNVBMVEUAAAAAr8EArMAAqsAA
           rMEBrMEBrMAAq8AArb8AqsIBrMEgtMa53+S53+QetMYArMEArMEAqrsArMA9scFegp4Cqr8Ao8gA
@@ -145,7 +147,7 @@
           OjAwJuhzAAAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0wMi0xOFQwNToxNjowOCswMDowMHH9
           Ut8AAAAASUVORK5CYII="></image>
         </svg>
-        <div>Pressure<br>{{ request.main.pressure }} mbar</div>
+        <div>Pressure<br>{{ request.currentWeather.main.pressure }} mbar</div>
       </div>
 
       <div class="card3">
@@ -165,10 +167,11 @@ import {ForecastWeather, key} from "@/store";
 import {defineComponent} from "vue";
 import AboutView from "@/views/AboutView.vue";
 
-interface MainWeatherComponent {
-  request: object,
-  isOpenSettingsDialog: boolean,
-  $store: Store<ForecastWeather>,
+interface CustomWeather {
+  request: any,
+  isOpenSettingsDialog: boolean;
+  $store: Store<ForecastWeather>;
+  currentIndexWeather: number;
 }
 
 export default defineComponent({
@@ -178,17 +181,20 @@ export default defineComponent({
     AboutView
   },
 
-  data(): MainWeatherComponent {
+  data(): CustomWeather {
     return {
       request: {},
       isOpenSettingsDialog: false,
       $store: useStore(key),
+      currentIndexWeather: 1,
     }
   },
 
   created() {
-    this.request = this.$store.state.settingsWeather.currentWeather;
-    this.isOpenSettingsDialog = this.$store.state.isOpenDialog;
+    this.updateCurrentWeather();
+    fetch('https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=c84121960f1db0ba5407ba2703537625')
+        .then(weather => console.log(weather))
+
   },
 
   watch: {
@@ -198,9 +204,24 @@ export default defineComponent({
   },
 
   methods: {
-    isOpenSettings(event: boolean) {
+    updateCurrentWeather() {
+      this.request = this.$store.state.settingsWeather[this.currentIndexWeather];
+      this.isOpenSettingsDialog = this.$store.state.isOpenDialog;
+
+    },
+
+    isOpenSettings(event: boolean): void {
       this.$store.state.isOpenDialog = event;
     },
+
+    slideForecasts(slide: string): void {
+      if (slide === 'next') {
+        this.currentIndexWeather = (this.currentIndexWeather < this.$store.state.settingsWeather.length - 1) ? this.currentIndexWeather + 1 : 0;
+      } else {
+        this.currentIndexWeather = (this.currentIndexWeather > 0) ? this.currentIndexWeather - 1 : this.$store.state.settingsWeather.length - 1;
+      }
+      this.updateCurrentWeather();
+    }
   }
 
 
@@ -320,7 +341,7 @@ export default defineComponent({
 
 }
 
-.material-symbols-outlined{
+.material-symbols-outlined {
   cursor: pointer;
 }
 

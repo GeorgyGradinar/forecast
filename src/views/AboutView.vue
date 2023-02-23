@@ -1,37 +1,51 @@
 <template>
-  <div class="text-center">
-    <v-dialog
-        v-model="isDialog"
-        width="500"
-    >
-      <v-card>
-        <v-card-title class="text-h5 grey lighten-2">
-          Privacy Policy
-        </v-card-title>
+  <v-dialog
+      v-model="isDialog"
+      persistent
+      width="600">
 
-        <v-card-text>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-          est laborum.
-        </v-card-text>
+    <v-card>
+      <v-card-title>
+        <span class="text-h5">Settings forecast</span>
+      </v-card-title>
 
-        <v-divider></v-divider>
+      <v-card-text>
+        <div class="wrapper-block-weather">
+          <v-card variant="tonal" class="block-weather" v-for="(forecast, index) in allForecast" :key="forecast.id"
+                  :index="index">
+            <span>{{ forecast }}</span>
+            <v-icon icon="mdi-delete" class="icon" @click="deleteForecast(index)"></v-icon>
+          </v-card>
+        </div>
+      </v-card-text>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn
-              color="primary"
-              text
-              @click="isDialog = false"
-          >
-            I accept
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </div>
+      <v-card-actions>
+        <v-spacer></v-spacer>
+        <v-row no-gutters class="addNewCity">
+          <v-col>
+            <v-select
+                v-model="trip.location"
+                :items="locations"
+            ></v-select>
+          </v-col>
+        </v-row>
+
+        <v-btn
+            color="blue-darken-1"
+            variant="text"
+            @click="addNewForecast(trip.location)">
+          Add city
+        </v-btn>
+
+        <v-btn
+            color="blue-darken-1"
+            variant="text"
+            @click="closeSettings()">
+          Close
+        </v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 <script lang="ts">
 
@@ -40,8 +54,12 @@ import {Store, useStore} from "vuex";
 import {ForecastWeather, key} from "@/store";
 
 export interface Setting {
-  isDialog: boolean,
-  $store: Store<ForecastWeather>,
+  isDialog: boolean;
+  $store: Store<ForecastWeather>;
+  allForecast: string[];
+  trip: any;
+  locations: string[];
+
 }
 
 export default defineComponent({
@@ -50,24 +68,85 @@ export default defineComponent({
 
   created() {
     this.isDialog = this.$store.state.isOpenDialog;
-
+    this.updateCurrentCountForecasts();
   },
 
   data(): Setting {
     return {
       isDialog: true,
-      $store: useStore(key)
+      $store: useStore(key),
+      allForecast: [],
+      trip: {
+        name: '',
+        location: null,
+        start: null,
+        end: null,
+      },
+      locations: ['Australia', 'Barbados', 'Chile', 'Denmark', 'Ecuador', 'France'],
     }
   },
 
-  watch: {
-    '$store.state.isOpenDialog'() {
-      this.isDialog = this.$store.state.isOpenDialog;
-    }
-  },
+  methods: {
+    deleteForecast(index: number): void {
+      const deleteOneForecast = 1;
+      this.$store.state.settingsWeather.splice(index, deleteOneForecast);
+      this.updateCurrentCountForecasts();
+    },
 
-  updated() {
-    this.$store.state.isOpenDialog = this.isDialog
+    addNewForecast(location: string): void {
+      if (!location) {
+        return;
+      }
+
+      this.trip.location = null;
+      this.$store.state.countForecasts.push(location)
+      this.updateCurrentCountForecasts();
+    },
+
+    updateCurrentCountForecasts(): void {
+      this.allForecast = [];
+      this.$store.state.settingsWeather.forEach(forecast => this.allForecast.push(forecast.city));
+    },
+
+    closeSettings() {
+      this.$store.state.isOpenDialog = false;
+    },
   }
+
+
 })
 </script>
+
+
+<style scoped>
+
+.wrapper-block-weather {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.block-weather {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.v-dialog .v-overlay__content > .v-card {
+  overflow: hidden;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.addNewCity {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+</style>

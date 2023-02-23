@@ -65,6 +65,7 @@ export default defineComponent({
   watch: {
     '$store.state.isOpenDialog'() {
       this.isOpenSettingsDialog = this.$store.state.isOpenDialog;
+      console.log(this.isOpenSettingsDialog)
     }
   },
 

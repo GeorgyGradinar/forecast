@@ -53,7 +53,7 @@ export default defineComponent({
   },
 
   created() {
-    this.request = this.$store.state.settingsWeather.currentWeather
+    // this.request = this.$store.state.settingsWeather.currentWeather
   },
 
   methods: {
